@@ -1,0 +1,128 @@
+[
+  {
+    "id": "b7430ec8-1913-4ff2-a73c-914ba1871a28",
+    "nombre": "Batman",
+    "anio": "1989",
+    "genero": "acción"
+  },
+  {
+    "id": "89b5b33b-48fe-4ab9-ae44-f4a58a1de197",
+    "nombre": "The Dark Knight",
+    "anio": "2008",
+    "genero": "acción"
+  },
+  {
+    "id": "bc813da1-afd1-4503-8675-7738b95d2e7a",
+    "nombre": "Batman v Superman: Dawn of Justice",
+    "anio": "2016",
+    "genero": "acción"
+  },
+  {
+    "id": "38e23c48-59c2-45dd-abff-fb0771bbe818",
+    "nombre": "The Dark Knight Rises",
+    "anio": "2012",
+    "genero": "acción"
+  },
+  {
+    "id": "5b876d2b-ab2c-4c40-bbfb-bad86279a8d8",
+    "nombre": "Batman Begins",
+    "anio": "2005",
+    "genero": "acción"
+  },
+  {
+    "id": "8a0bd2a3-019d-462d-8eff-387a94818e95",
+    "nombre": "The LEGO Batman Movie",
+    "anio": "2017",
+    "genero": "acción"
+  },
+  {
+    "id": "eef1ff72-af51-411d-9c59-7e1357cb9690",
+    "nombre": "Batman Forever",
+    "anio": "1995",
+    "genero": "acción"
+  },
+  {
+    "id": "4c815beb-170e-488b-bc4c-bf19b91be6f8",
+    "nombre": "Batman & Robin",
+    "anio": "1997",
+    "genero": "acción"
+  },
+  {
+    "id": "29d0adae-1f2b-4730-9c48-bd7f19c51982",
+    "nombre": "Batman Returns",
+    "anio": "1992",
+    "genero": "acción"
+  },
+  {
+    "id": "76c2d612-928c-499b-8a3b-06ffe8c843e7",
+    "nombre": "Star Wars",
+    "anio": "1977",
+    "genero": "Ciencia Ficción"
+  },
+  {
+    "id": "3cb47597-ce7d-4b0f-8b5a-3b6c8eff9a2b",
+    "nombre": "Star Wars: The Last Jedi",
+    "anio": "2017",
+    "genero": "Ciencia Ficción"
+  },
+  {
+    "id": "78276331-9185-475b-bb4b-70d2760c6e0c",
+    "nombre": "Star Wars: The Force Awakens",
+    "anio": "2015",
+    "genero": "Ciencia Ficción"
+  },
+  {
+    "id": "4d54e8dc-df25-4325-95e8-ffe982e6890f",
+    "nombre": "Star Wars: Episode I - The Phantom Menace",
+    "anio": "1999",
+    "genero": "Ciencia Ficción"
+  },
+  {
+    "id": "9b1e6af1-e59f-4fa4-9ed3-32804def04bc",
+    "nombre": "Star Wars: The Clone Wars",
+    "anio": "2008",
+    "genero": "Ciencia Ficción"
+  },
+  {
+    "id": "fa8903b1-d66a-4655-b12a-1a22e165ba5e",
+    "nombre": "Star Wars: Episode V - The Empire Strikes Back",
+    "anio": "1980",
+    "genero": "Ciencia Ficción"
+  },
+  {
+    "id": "cc77cc41-28e1-4bec-83b7-c86d30bf8955",
+    "nombre": "Star Wars: Episode III - Revenge of the Sith",
+    "anio": "2005",
+    "genero": "Ciencia Ficción"
+  },
+  {
+    "id": "10663743-7b9a-4030-b36f-9919f6296de3",
+    "nombre": "Star Wars: Episode VI - Return of the Jedi",
+    "anio": "1983",
+    "genero": "Ciencia Ficción"
+  },
+  {
+    "id": "5a4e0895-38fa-47fb-8a26-41fdbd1e28e7",
+    "nombre": "Star Wars: Episode II - Attack of the Clones",
+    "anio": "2002",
+    "genero": "Ciencia Ficción"
+  },
+  {
+    "id": "ce149864-1955-4f59-8476-d6b9b27a1526",
+    "nombre": "Star Wars: Threads of Destiny",
+    "anio": "2014",
+    "genero": "Ciencia Ficción"
+  },
+  {
+    "id": "8584085b-8eb3-4a61-a2c8-a04586c04256",
+    "nombre": "Star Wars: Lost Horizons",
+    "anio": "2018",
+    "genero": "Ciencia Ficción"
+  },
+  {
+    "id": "6f031f91-de7c-4b2e-9570-25ff6e5a201b",
+    "nombre": "Star Wars: Star Warriors ",
+    "anio": "2007",
+    "genero": "Ciencia Ficción"
+  }
+]

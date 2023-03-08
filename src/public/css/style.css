@@ -1,0 +1,76 @@
+body,
+html {
+  height: 100%;
+  background-color: rgb(31 32 35);
+  color: white;
+}
+
+.hero-image {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url('../img/computer.jpg');
+
+  height: 100%;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.hero-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+input:focus {
+  border: 3px solid #555;
+}
+
+input[type='button'],
+input[type='submit'] {
+  background-color: rgb(234 255 106);
+  border: none;
+  color: rgb(31 32 35);
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+nav > ul {
+  background-color: rgb(234 255 106);
+  border-radius: 10px;
+  display: flex;
+}
+
+nav > ul > li {
+  display: inline;
+  margin-right: 5px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+nav > ul > li > a {
+  display: block;
+  padding: 6px;
+  border-radius: 10px;
+  background-color: rgba(31, 32, 35, 0.6);
+  color: rgb(31 32 35);
+  width: fit-content;
+}
+
+nav > ul > li > a:hover {
+  background-color: rgba(31, 32, 35, 0.1);
+}
