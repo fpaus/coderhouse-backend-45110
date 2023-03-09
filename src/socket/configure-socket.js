@@ -1,19 +1,45 @@
 import { Server } from 'socket.io';
-const connections = [];
-export default function configureSocket(httpServer) {
-  const io = new Server(httpServer);
-  io.on('connection', (socket) => {
+
+class SocketManager {
+  #io;
+  #sockets = [];
+  constructor(httpServer) {
+    this.#io = new Server(httpServer);
+    this.#configure();
+  }
+
+  #configure() {
+    this.#io.on('connection', (socket) => this.#confiogureSocket(socket));
+  }
+
+  #confiogureSocket(socket) {
     let credencial = `socket-${socket.id}`;
-    connections.push({ socket, credencial });
+    this.#sockets.push({ socket, credencial });
     socket.on('mensaje', (data) => {
       console.log({
         credencial,
         mensaje: data,
       });
-      io.emit('mensaje_recibido', {
+      this.#io.emit('mensaje_recibido', {
         credencial,
         mensaje: data,
       });
     });
-  });
+  }
+
+  getSocketServer() {
+    return this.io;
+  }
+  getSocket(credencial) {
+    return this.#sockets.find((c) => c.credencial === credencial);
+  }
+}
+
+export let socketManager = undefined;
+
+export default function configureSocket(httpServer) {
+  if (socketManager === undefined) {
+    socketManager = new SocketManager(httpServer);
+  }
+  return socketManager;
 }

@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import { FileManager } from '../data/db.js';
 import { validarUsuario, validarUsuarioParcial } from '../data/validacion.js';
-const usuarioManager = new FileManager('./data/usuarios.json');
+import { userManager as usuarioManager } from '../managers/user.manager.js';
+// const usuarioManager = new FileManager('../data/usuarios.json');
 const route = Router();
 
 route.use(async (req, res, next) => {

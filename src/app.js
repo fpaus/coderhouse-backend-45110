@@ -1,4 +1,5 @@
 import express from 'express';
+import { ValidationError } from './classes/errors/validation-exception.js';
 import configureHandlebars from './lib/handlebars/hbs.middleware.js';
 import mascotasRoute from './routes/mascotas.route.js';
 import peliculasRoute from './routes/peliculas.route.js';
@@ -22,6 +23,9 @@ app.use('/api/pets', mascotasRoute);
 
 app.use((error, req, res, next) => {
   console.error({ error });
+  if (error instanceof ValidationError) {
+    res.status(error.code).json(error.mensaje);
+  }
   res.status(500).json({ error });
 });
 

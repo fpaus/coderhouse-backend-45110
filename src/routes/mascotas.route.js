@@ -1,9 +1,11 @@
 import { Router } from 'express';
 import { FileManager } from '../data/db.js';
 import { validarMascota } from '../data/validacion.js';
+import { userManager as usuarioManager } from '../managers/user.manager.js';
 import { avatarUploader } from '../utils/avatarUploader.js';
-const mascotasManager = new FileManager('./data/mascotas.json');
-const usuarioManager = new FileManager('./data/usuarios.json');
+
+const mascotasManager = new FileManager('../data/mascotas.json');
+
 const route = Router();
 
 route.get('/', async (req, res) => {
@@ -23,7 +25,7 @@ route.get('/', async (req, res) => {
 route.post('/', avatarUploader.single('file'), async (req, res) => {
   const mascota = req.body;
   const file = req.file?.filename;
-  console.log({mascota, file});
+  console.log({ mascota, file });
   const esValido = validarMascota(mascota);
   if (!esValido) {
     res.status(400).send({

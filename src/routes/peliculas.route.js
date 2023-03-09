@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { FileManager } from '../data/db.js';
 import { validarPelicula, validarPeliculaParcial } from '../data/validacion.js';
-const peliculasManager = new FileManager('./data/peliculas.json');
+const peliculasManager = new FileManager('../data/peliculas.json');
 const route = Router();
 route.get('/', async (req, res) => {
   const query = req.query;
@@ -25,6 +25,7 @@ route.get('/:idPelicula', async (req, res) => {
       .status(404)
       .send({ error: `Pelicula con id ${idPelicula} no encontrado` });
     return;
+    // throw new Error(`Pelicula con id ${idPelicula} no encontrado`);
   }
   res.send({ Pelicula });
 });
@@ -37,6 +38,7 @@ route.post('', async (req, res) => {
       error: 'Datos inválidos',
     });
     return;
+    // throw new BadRequestException('Datos inválidos');
   }
   const id = await peliculasManager.crear(Pelicula);
   console.log(Pelicula);
@@ -52,6 +54,7 @@ route.put('/:idPelicula', async (req, res) => {
       .send({ error: `Pelicula con id ${idPelicula} no encontrado` });
     return;
   }
+
   const nuevosDatos = req.body;
   const esValido = validarPelicula(nuevosDatos);
   if (!esValido) {
