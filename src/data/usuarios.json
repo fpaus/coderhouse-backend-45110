@@ -622,29 +622,5 @@
     "nombre": "Juan",
     "apellido": "Perez",
     "email": "juanPerez@gmail.com"
-  },
-  {
-    "id": "80096328-0ceb-4c0a-b389-36d320b618c2"
-  },
-  {
-    "id": "c41b7762-2689-486e-8a50-a46827c49b4a"
-  },
-  {
-    "id": "9a18329d-944d-43f1-b890-43287730f1e0"
-  },
-  {
-    "id": "0819ecf8-695f-465a-ad53-7355db926ebe"
-  },
-  {
-    "id": "197476e8-319b-48c5-86aa-76d4f6c1ea81"
-  },
-  {
-    "id": "c74864d6-7fdc-4bbb-8503-bb59da50873b"
-  },
-  {
-    "id": "85c4cc80-8234-42b7-89fb-9c2ea6142801",
-    "nombre": "Fabrizio",
-    "apellido": "Pauselli",
-    "email": "fabriziopauselli@gmail.com"
   }
 ]
