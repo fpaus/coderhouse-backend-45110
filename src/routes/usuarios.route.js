@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { BadRequestException } from '../classes/errors/bad-request-exception.js';
 import { validarUsuario, validarUsuarioParcial } from '../data/validacion.js';
 import { userManager as usuarioManager } from '../managers/user.manager.js';
 // const usuarioManager = new FileManager('../data/usuarios.json');
@@ -36,14 +37,12 @@ route.get('/:idUsuario', async (req, res) => {
   res.send({ usuario });
 });
 
-route.post('', async (req, res) => {
+route.post('', async (req, res, next) => {
   const usuario = req.body;
   console.log(usuario);
   const esValido = validarUsuario(usuario);
   if (!esValido) {
-    res.status(400).send({
-      error: 'Datos inválidos',
-    });
+    next(new BadRequestException('Datos inválidos'));
     return;
   }
   const id = await usuarioManager.crear(usuario);
