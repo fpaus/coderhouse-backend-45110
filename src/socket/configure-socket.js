@@ -16,10 +16,6 @@ class SocketManager {
     let credencial = `socket-${socket.id}`;
     this.#sockets.push({ socket, credencial });
     socket.on('mensaje', (data) => {
-      console.log({
-        credencial,
-        mensaje: data,
-      });
       this.#io.emit('mensaje_recibido', {
         credencial,
         mensaje: data,

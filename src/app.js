@@ -17,12 +17,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
 
 app.use('/', viewsRoute);
-app.use('/api', routes)
-// app.use('/api/users', usuarioRoute);
-// app.use('/api/estudiantes', estudianteRoute);
+app.use('/api', routes);
 
 app.use((error, req, res, next) => {
-  console.error({ error });
   if (error instanceof ValidationError) {
     return res.status(error.statusCode).json({
       error: error.mensaje,
@@ -32,7 +29,7 @@ app.use((error, req, res, next) => {
 });
 
 const httpServer = app.listen(port, () =>
-  console.log(`Servidor de la clase 8 escuchando en el puerto ${port}`),
+  console.log(`Servidor escuchando en el puerto ${port}`),
 );
 configureSocket(httpServer);
 
