@@ -1,10 +1,9 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import { config } from '../config.js';
 import { ValidationError } from './classes/errors/validation-exception.js';
-import { config } from './config.js';
 import configureHandlebars from './lib/handlebars/hbs.middleware.js';
-import estudianteRoute from './routes/estudiantes.route.js';
-import usuarioRoute from './routes/usuarios.route.js';
+import routes from './routes/index.js';
 import viewsRoute from './routes/views.route.js';
 import configureSocket from './socket/configure-socket.js';
 import fileDirName from './utils/fileDirName.js';
@@ -18,9 +17,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
 
 app.use('/', viewsRoute);
-
-app.use('/api/users', usuarioRoute);
-app.use('/api/estudiantes', estudianteRoute);
+app.use('/api', routes)
+// app.use('/api/users', usuarioRoute);
+// app.use('/api/estudiantes', estudianteRoute);
 
 app.use((error, req, res, next) => {
   console.error({ error });

@@ -2,15 +2,19 @@ import { Router } from 'express';
 import { studentModel } from '../models/student.model.js';
 const route = Router();
 
-route.get('/', (req, res) => {
-  const { skip, limit, ...query } = req.query;
-  studentModel
-    .find(query)
-    .skip(Number(skip ?? 0))
-    .limit(Number(limit ?? 10))
-    .then((estudiantes) => res.send({ estudiantes }))
-    .catch((error) => res.status(500).send({ error }));
+route.get('/', async (req, res, next) => {
+  try {
+    const { skip, limit, ...query } = req.query;
+    const estudiantes = studentModel.paginate(query, {
+      skip: Number(skip ?? 0),
+      limit: Number(limit ?? 10),
+    });
+    res.send({ estudiantes });
+  } catch (error) {
+    next(error);
+  }
 });
+
 route.get('/:estudianteID', async (req, res, next) => {
   const estudianteId = req.params.estudianteID;
   try {
@@ -26,6 +30,7 @@ route.get('/:estudianteID', async (req, res, next) => {
     next(error);
   }
 });
+
 route.post('/', async (req, res, next) => {
   try {
     const data = req.body;
@@ -35,6 +40,7 @@ route.post('/', async (req, res, next) => {
     next(error);
   }
 });
+
 route.put('/:estudianteID', async (req, res, next) => {
   try {
     const estudianteId = req.params.estudianteID;
@@ -52,6 +58,7 @@ route.put('/:estudianteID', async (req, res, next) => {
     next(error);
   }
 });
+
 route.delete('/:estudianteID', async (req, res, next) => {
   try {
     const estudianteId = req.params.estudianteID;

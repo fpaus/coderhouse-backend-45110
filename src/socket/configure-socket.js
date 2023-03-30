@@ -9,10 +9,10 @@ class SocketManager {
   }
 
   #configure() {
-    this.#io.on('connection', (socket) => this.#confiogureSocket(socket));
+    this.#io.on('connection', (socket) => this.configureSocket(socket));
   }
 
-  #confiogureSocket(socket) {
+  configureSocket(socket) {
     let credencial = `socket-${socket.id}`;
     this.#sockets.push({ socket, credencial });
     socket.on('mensaje', (data) => {
