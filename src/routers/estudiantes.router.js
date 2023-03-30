@@ -5,11 +5,18 @@ const route = Router();
 route.get('/', async (req, res, next) => {
   try {
     const { skip, limit, ...query } = req.query;
-    const estudiantes = studentModel.paginate(query, {
+    const estudiantes = await studentModel.paginate(query, {
       skip: Number(skip ?? 0),
       limit: Number(limit ?? 10),
+      lean: true,
     });
-    res.send({ estudiantes });
+    res.send({
+      estudiantes: estudiantes.docs,
+      total: estudiantes.totalDocs,
+      totalPages: estudiantes.totalPages,
+      hasNextPage: estudiantes.hasNextPage,
+      hasPrevPage: estudiantes.hasPrevPage,
+    });
   } catch (error) {
     next(error);
   }
@@ -52,7 +59,10 @@ route.put('/:estudianteID', async (req, res, next) => {
         .send({ error: `Estudiante con id ${estudianteId} no encontrado` });
       return;
     }
-    await studentModel.updateOne({ _id: estudianteId }, data);
+    await studentModel.updateOne(
+      { _id: estudianteId },
+      { ...usuarioExiste, ...data },
+    );
     res.send({ id: estudianteId });
   } catch (error) {
     next(error);
