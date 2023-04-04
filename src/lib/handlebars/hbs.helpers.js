@@ -1,8 +1,11 @@
 /**
- * @export
- * @return {Boolean}
+ *
+ * @function
+ * @name hasStyle
+ * @kind function
+ * @returns {boolean}
  */
-function hasStyle(property) {
+function hasStyle() {
   return this['style'] !== undefined;
 }
 
