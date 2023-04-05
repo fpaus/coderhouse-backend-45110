@@ -1,6 +1,8 @@
 <div class='hero-image'>
   <div class='hero-text'>
-    <h1>Registrar usuario</h1>
+    <h1>
+      Registrar usuario
+    </h1>
     <form onsubmit='send(event)'>
       <input id='form-name' type='text' name='form-name' placeholder='Nombre' />
       <input
@@ -15,7 +17,13 @@
         name='form-email'
         placeholder='email'
       />
-
+      <input id='form-edad' type='number' name='form-edad' placeholder='edad' />
+      <input
+        id='form-password'
+        type='password'
+        name='form-password'
+        placeholder='password'
+      />
       <input type='submit' value='Guardar Usuario' />
     </form>
     <p id='usuario-id'></p>

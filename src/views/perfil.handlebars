@@ -1,0 +1,29 @@
+<div class='hero-image'>
+  <button onclick='logout()'>
+    Cerrar sesión
+  </button>
+  <div class='hero-text'>
+    <h1>
+      Perfil
+    </h1>
+    <p>
+      Nombre:
+      {{nombre}}
+    </p>
+    <p>
+      Apellido:
+      {{apellido}}
+    </p>
+    <p>
+      edad:
+      {{edad}}
+    </p>
+    <p>
+      email:
+      {{email}}
+    </p>
+  </div>
+  <script>
+    function logout() { api.post("/api/auth/logout"); }
+  </script>
+</div>

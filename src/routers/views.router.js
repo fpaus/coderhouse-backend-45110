@@ -1,4 +1,6 @@
 import { Router } from 'express';
+import { userModel } from '../models/user.model.js';
+import { authenticated } from '../utils/middlewares/auth.js';
 
 const route = Router();
 
@@ -7,6 +9,10 @@ route.get('/', (req, res) => {
 });
 
 route.get('/register', (req, res) => {
+  const email = req.session.user;
+  if (email) {
+    return res.redirect('/perfil');
+  }
   res.render('register', {
     style: 'style',
   });
@@ -31,25 +37,23 @@ route.get('/mensaje', (req, res) => {
   res.render('mensaje');
 });
 
-route.get('/logout', (req, res) => {
-  req.session.destroy((err) => {
-    if (err) {
-      res.status(500).send({ error: err });
-    } else {
-      res.send({ logout: 'ok' });
-    }
-  });
+route.get('/login', (req, res) => {
+  const email = req.session.user;
+  if (email) {
+    return res.redirect('/perfil');
+  }
+  res.render('login');
 });
 
-route.get('/login', (req, res) => {
-  const { username, password } = req.query;
-  if (username !== 'admin' || password !== 'admin') {
-    res.status(401).send({ error: 'Usuario o contraseña incorrectos' });
-    return;
-  }
-  req.session.user = username;
-  req.session.admin = true;
-  res.send({ login: 'ok' });
+route.get('/perfil', authenticated, async (req, res) => {
+  const user = req.user;
+
+  res.render('perfil', {
+    nombre: user.nombre,
+    apellido: user.apellido,
+    edad: user.edad,
+    email: user.email,
+  });
 });
 
 export default route;

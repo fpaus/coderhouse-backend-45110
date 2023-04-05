@@ -75,7 +75,7 @@ export class FileManager {
   async get(id) {
     const todasLasEntidades = await this.getAll();
     const entidadCargada = todasLasEntidades.find(
-      (entidad) => entidad.id === id,
+      (entidad) => entidad.id === id
     );
     return entidadCargada;
   }

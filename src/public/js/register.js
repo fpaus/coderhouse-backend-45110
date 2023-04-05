@@ -3,22 +3,34 @@ async function send(event) {
   const nombre = document.getElementById('form-name').value;
   const apellido = document.getElementById('form-last-name').value;
   const email = document.getElementById('form-email').value;
+  const edad = document.getElementById('form-edad').value;
+  const password = document.getElementById('form-password').value;
 
-  const response = await fetch('/api/users', {
-    method: 'POST',
-    body: JSON.stringify({
+  api
+    .post('/api/usuarios', {
       nombre,
       apellido,
       email,
-    }),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-  if (response.ok) {
-    response.json().then((d) => {
-      const p = document.getElementById('usuario-id');
-      p.innerText = `Usuario Registrado con id ${d.id}`;
-    });
-  }
+      edad,
+      password,
+    })
+    .then((d) => alert('Usuario Registrado'));
 }
+//   await fetch('/api/usuarios', {
+//     method: 'POST',
+//     body: JSON.stringify({
+//       nombre,
+//       apellido,
+//       email,
+//       edad, password
+//     }),
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//   });
+//   if (response.ok) {
+//     response.json().then((d) => {
+//       alert('Usuario Registrado')
+//     });
+//   }
+// }

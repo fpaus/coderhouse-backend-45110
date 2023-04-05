@@ -8,5 +8,5 @@ const { __dirname } = fileDirName(import.meta);
 class UserManager extends Manager {}
 
 export const userManager = new UserManager(
-  new FileManager(path.join(__dirname, '..', 'data', 'usuarios.json')),
+  new FileManager(path.join(__dirname, '..', 'data', 'usuarios.json'))
 );

@@ -2,7 +2,7 @@ const socket = io();
 socket.emit('credencial', makeid(8));
 socket.on('mensaje_recibido', (data) => mostrarMensaje(data));
 socket.on('mensajes_guardados', (data) =>
-  data.forEach((d) => mostrarMensaje(d)),
+  data.forEach((d) => mostrarMensaje(d))
 );
 function enviarMensaje(input) {
   socket.emit('mensaje', input);

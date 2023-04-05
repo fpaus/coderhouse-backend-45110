@@ -2,13 +2,13 @@ const socket = io();
 socket.emit('nombre_mensaje', 'Data enviada desde el fronted');
 
 socket.on('evento_individual', (data) =>
-  mostrarMensajes('evento_individual:', data),
+  mostrarMensajes('evento_individual:', data)
 );
 socket.on('evento_para_el_resto', (data) =>
-  mostrarMensajes('evento_para_el_resto:', data),
+  mostrarMensajes('evento_para_el_resto:', data)
 );
 socket.on('evento_para_todos', (data) =>
-  mostrarMensajes('evento_para_todos:', data),
+  mostrarMensajes('evento_para_todos:', data)
 );
 
 function mostrarMensajes(...mensajes) {

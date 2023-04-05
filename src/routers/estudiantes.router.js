@@ -61,7 +61,7 @@ route.put('/:estudianteID', async (req, res, next) => {
     }
     await studentModel.updateOne(
       { _id: estudianteId },
-      { ...usuarioExiste, ...data },
+      { ...usuarioExiste, ...data }
     );
     res.send({ id: estudianteId });
   } catch (error) {

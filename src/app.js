@@ -1,3 +1,4 @@
+import MongoStore from 'connect-mongo';
 import cookieParser from 'cookie-parser';
 import express from 'express';
 import session from 'express-session';
@@ -18,10 +19,18 @@ configureHandlebars(app);
 app.use(cookieParser(config.cookie_secret));
 app.use(
   session({
+    store: MongoStore.create({
+      mongoUrl: mongo_url,
+      mongoOptions: {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      },
+      ttl: 15,
+    }),
     secret: config.cookie_secret,
     resave: true,
     saveUninitialized: true,
-  }),
+  })
 );
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -31,6 +40,7 @@ app.use('/', viewsRoute);
 app.use('/api', routes);
 
 app.use((error, req, res, next) => {
+  console.log(error);
   if (error instanceof ValidationError) {
     return res.status(error.statusCode).json({
       error: error.mensaje,
@@ -40,7 +50,7 @@ app.use((error, req, res, next) => {
 });
 
 const httpServer = app.listen(port, () =>
-  console.log(`Servidor escuchando en el puerto ${port}`),
+  console.log(`Servidor escuchando en el puerto ${port}`)
 );
 configureSocket(httpServer);
 

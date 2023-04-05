@@ -41,6 +41,10 @@ route.get('/:idUsuario', async (req, res, next) => {
 });
 
 route.post('/', async (req, res, next) => {
+  const email = req.session.user;
+  if (email) {
+    return res.redirect('/perfil');
+  }
   const usuario = req.body;
 
   try {
@@ -67,7 +71,7 @@ route.put('/:idUsuario', async (req, res, next) => {
 
     await userModel.updateOne(
       { _id: idUsuario },
-      { ...usuario, ...nuevosDatos },
+      { ...usuario, ...nuevosDatos }
     );
     res.send({ ok: true });
   } catch (error) {
