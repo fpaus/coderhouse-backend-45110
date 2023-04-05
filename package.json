@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start:dev": "nodemon src/app",
-    "start": "node src/app"
+    "start": "node src/app",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
@@ -24,7 +25,12 @@
     "socket.io": "^4.6.1"
   },
   "devDependencies": {
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.0",
     "nodemon": "^2.0.21",
     "prettier": "^2.8.7"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
   }
 }
