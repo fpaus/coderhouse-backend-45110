@@ -56,4 +56,8 @@ route.get('/perfil', authenticated, async (req, res) => {
   });
 });
 
+route.get('/forgot-password', async (req, res) => {
+  res.render('forgot-password');
+});
+
 export default route;

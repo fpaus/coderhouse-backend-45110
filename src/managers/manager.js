@@ -12,7 +12,7 @@ export class Manager {
   }
 
   async get(id) {
-    return this.persistencia.get(id);
+    return this.#persistencia.get(id);
   }
 
   async modificar(id, datos) {
@@ -20,6 +20,6 @@ export class Manager {
   }
 
   async eliminar(id) {
-    return this.persistencia.eliminar(id);
+    return this.#persistencia.eliminar(id);
   }
 }

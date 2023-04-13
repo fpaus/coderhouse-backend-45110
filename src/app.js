@@ -10,6 +10,8 @@ import routes from './routers/index.js';
 import viewsRoute from './routers/views.router.js';
 import configureSocket from './socket/configure-socket.js';
 import fileDirName from './utils/fileDirName.js';
+import { configurePassport } from './config/passport.config.js';
+import passport from 'passport';
 
 const { __dirname } = fileDirName(import.meta);
 const { port, mongo_url } = config;
@@ -28,10 +30,14 @@ app.use(
       ttl: 15,
     }),
     secret: config.cookie_secret,
-    resave: true,
+    resave: false,
     saveUninitialized: true,
   })
 );
+configurePassport();
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
