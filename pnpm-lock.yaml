@@ -8,6 +8,7 @@ specifiers:
   express-handlebars: ^7.0.1
   express-session: ^1.17.3
   husky: ^8.0.3
+  jsonwebtoken: ^9.0.0
   lint-staged: ^13.2.0
   mongodb: ^5.2.0
   mongoose: ^7.0.2
@@ -15,6 +16,7 @@ specifiers:
   multer: 1.4.5-lts.1
   nodemon: ^2.0.21
   passport: ^0.6.0
+  passport-github2: ^0.1.12
   passport-local: ^1.0.0
   prettier: ^2.8.7
   socket.io: ^4.6.1
@@ -26,11 +28,13 @@ dependencies:
   express: 4.18.2
   express-handlebars: 7.0.1
   express-session: 1.17.3
+  jsonwebtoken: 9.0.0
   mongodb: 5.2.0
   mongoose: 7.0.2
   mongoose-paginate-v2: 1.7.1
   multer: 1.4.5-lts.1
   passport: 0.6.0
+  passport-github2: 0.1.12
   passport-local: 1.0.0
   socket.io: 4.6.1
 
@@ -269,6 +273,14 @@ packages:
     engines: { node: ^4.5.0 || >= 5.9 }
     dev: false
 
+  /base64url/3.0.1:
+    resolution:
+      {
+        integrity: sha512-ir1UPr3dkwexU7FdV8qBBbNDRUhMmIekYMFZfi+C/sLNnRESKPl23nB9b2pltqfOQNnGzsDdId90AEtG5tCx4A==,
+      }
+    engines: { node: '>=6.0.0' }
+    dev: false
+
   /bcrypt/5.1.0:
     resolution:
       {
@@ -364,6 +376,13 @@ packages:
         integrity: sha512-HevkSpDbpUfsrHWmWiAsNavANKYIErV2ePXllp1bwq5CDreAaFVj6RVlZpJnxK4WWDCJ/5jMUpaY6G526q3Hjg==,
       }
     engines: { node: '>=14.20.1' }
+    dev: false
+
+  /buffer-equal-constant-time/1.0.1:
+    resolution:
+      {
+        integrity: sha512-zRpUiDwd/xk6ADqPMATG8vc9VPrkck7T07OIx0gnjmJAnHnTVXNQG3vfvWNuiZIkwu9KrKdA1iJKfsfTVxE6NA==,
+      }
     dev: false
 
   /buffer-from/1.1.2:
@@ -729,6 +748,15 @@ packages:
         integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==,
       }
     dev: true
+
+  /ecdsa-sig-formatter/1.0.11:
+    resolution:
+      {
+        integrity: sha512-nagl3RYrbNv6kQkeJIpt6NJZy8twLB/2vtz6yN9Z4vRKHN4/QZJIEbqohALSgwKdnksuY3k5Addp5lg8sVoVcQ==,
+      }
+    dependencies:
+      safe-buffer: 5.2.1
+    dev: false
 
   /ee-first/1.1.1:
     resolution:
@@ -1278,6 +1306,40 @@ packages:
       }
     dev: true
 
+  /jsonwebtoken/9.0.0:
+    resolution:
+      {
+        integrity: sha512-tuGfYXxkQGDPnLJ7SibiQgVgeDgfbPq2k2ICcbgqW8WxWLBAxKQM/ZCu/IT8SOSwmaYl4dpTFCW5xZv7YbbWUw==,
+      }
+    engines: { node: '>=12', npm: '>=6' }
+    dependencies:
+      jws: 3.2.2
+      lodash: 4.17.21
+      ms: 2.1.3
+      semver: 7.4.0
+    dev: false
+
+  /jwa/1.4.1:
+    resolution:
+      {
+        integrity: sha512-qiLX/xhEEFKUAJ6FiBMbes3w9ATzyk5W7Hvzpa/SLYdxNtng+gcurvrI7TbACjIXlsJyr05/S1oUhZrc63evQA==,
+      }
+    dependencies:
+      buffer-equal-constant-time: 1.0.1
+      ecdsa-sig-formatter: 1.0.11
+      safe-buffer: 5.2.1
+    dev: false
+
+  /jws/3.2.2:
+    resolution:
+      {
+        integrity: sha512-YHlZCB6lMTllWDtSPHz/ZXTsi8S00usEV6v1tjq8tOUZzw7DpSDWVXjXDre6ed1w/pd495ODpHZYSdkRTsa0HA==,
+      }
+    dependencies:
+      jwa: 1.4.1
+      safe-buffer: 5.2.1
+    dev: false
+
   /kareem/2.5.1:
     resolution:
       {
@@ -1351,6 +1413,13 @@ packages:
       through: 2.3.8
       wrap-ansi: 7.0.0
     dev: true
+
+  /lodash/4.17.21:
+    resolution:
+      {
+        integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==,
+      }
+    dev: false
 
   /log-update/4.0.0:
     resolution:
@@ -1817,6 +1886,13 @@ packages:
       set-blocking: 2.0.0
     dev: false
 
+  /oauth/0.9.15:
+    resolution:
+      {
+        integrity: sha512-a5ERWK1kh38ExDEfoO6qUHJb32rd7aYmPHuyCu3Fta/cnICvYmgd2uhuKXvPD+PXB+gCEYYEaQdIRAjCOwAKNA==,
+      }
+    dev: false
+
   /object-assign/4.1.1:
     resolution:
       {
@@ -1896,6 +1972,16 @@ packages:
     engines: { node: '>= 0.8' }
     dev: false
 
+  /passport-github2/0.1.12:
+    resolution:
+      {
+        integrity: sha512-3nPUCc7ttF/3HSP/k9sAXjz3SkGv5Nki84I05kSQPo01Jqq1NzJACgMblCK0fGcv9pKCG/KXU3AJRDGLqHLoIw==,
+      }
+    engines: { node: '>= 0.8.0' }
+    dependencies:
+      passport-oauth2: 1.7.0
+    dev: false
+
   /passport-local/1.0.0:
     resolution:
       {
@@ -1904,6 +1990,20 @@ packages:
     engines: { node: '>= 0.4.0' }
     dependencies:
       passport-strategy: 1.0.0
+    dev: false
+
+  /passport-oauth2/1.7.0:
+    resolution:
+      {
+        integrity: sha512-j2gf34szdTF2Onw3+76alNnaAExlUmHvkc7cL+cmaS5NzHzDP/BvFHJruueQ9XAeNOdpI+CH+PWid8RA7KCwAQ==,
+      }
+    engines: { node: '>= 0.4.0' }
+    dependencies:
+      base64url: 3.0.1
+      oauth: 0.9.15
+      passport-strategy: 1.0.0
+      uid2: 0.0.4
+      utils-merge: 1.0.1
     dev: false
 
   /passport-strategy/1.0.0:
@@ -2648,6 +2748,13 @@ packages:
     engines: { node: '>= 0.8' }
     dependencies:
       random-bytes: 1.0.0
+    dev: false
+
+  /uid2/0.0.4:
+    resolution:
+      {
+        integrity: sha512-IevTus0SbGwQzYh3+fRsAMTVVPOoIVufzacXcHPmdlle1jUpq7BRL+mw3dgeLanvGZdwwbWhRV6XrcFNdBmjWA==,
+      }
     dev: false
 
   /undefsafe/2.0.5:

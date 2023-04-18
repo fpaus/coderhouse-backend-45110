@@ -2,7 +2,11 @@ import passport from 'passport';
 import local from 'passport-local';
 import { userModel } from '../models/user.model.js';
 import { createHash, isValidPassword } from '../utils/crypto.js';
+import github from 'passport-github2';
+import { config } from '../../config.js';
+
 const LocalStrategy = local.Strategy;
+const GithubStrategy = github.Strategy;
 
 export function configurePassport() {
   passport.use(
@@ -53,6 +57,37 @@ export function configurePassport() {
           return done(null, user);
         } catch (error) {
           done(error);
+        }
+      }
+    )
+  );
+
+  passport.use(
+    'github',
+    new GithubStrategy(
+      {
+        clientID: config.github_client_id,
+        clientSecret: config.github_client_secret,
+        callbackURL: config.github_callback_url,
+      },
+      async (accesToken, refreshToken, profile, done) => {
+        try {
+          console.log({ login: 'github', profile });
+          const email = profile._json.email;
+          const user = await userModel.findOne({ email });
+          if (!user) {
+            const newUser = await userModel.create({
+              email,
+              nombre: profile._json.name,
+              apellido: '-',
+              password: '-',
+              edad: 18,
+            });
+            return done(null, newUser);
+          }
+          return done(null, user);
+        } catch (error) {
+          done(error, false);
         }
       }
     )

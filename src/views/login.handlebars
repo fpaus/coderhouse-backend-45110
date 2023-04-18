@@ -18,7 +18,12 @@
       />
       <input type='submit' value='Login' />
     </form>
-    <a href='/forgot-password'>Olvidé mi contraseña</a>
+    {{! <a href='/forgot-password'>Olvidé mi contraseña</a> }}
+    <a href='api/auth/github'>
+      <button>
+        Continuar con Github
+      </button>
+    </a>
   </div>
 </div>
 <script src='js/login.js'></script>

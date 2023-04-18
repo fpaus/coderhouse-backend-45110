@@ -52,4 +52,20 @@ route.post('/restore-password', async (req, res) => {
   res.send({ message: 'Password changed' });
 });
 
+route.get(
+  '/github',
+  passport.authenticate('github', { scope: ['user:email'] }),
+  (req, res) => {}
+);
+
+route.get(
+  '/github-callback',
+  passport.authenticate('github', { failureRedirect: '/login' }),
+  (req, res) => {
+    console.log(req.user);
+    req.session.user = req.user;
+    res.redirect('/');
+  }
+);
+
 export default route;
