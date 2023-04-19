@@ -3,10 +3,12 @@ import local from 'passport-local';
 import { userModel } from '../models/user.model.js';
 import { createHash, isValidPassword } from '../utils/crypto.js';
 import github from 'passport-github2';
+import jwt from 'passport-jwt';
 import { config } from '../../config.js';
 
 const LocalStrategy = local.Strategy;
 const GithubStrategy = github.Strategy;
+const JWTStrategy = jwt.Strategy;
 
 export function configurePassport() {
   passport.use(
@@ -32,7 +34,7 @@ export function configurePassport() {
           });
           return done(null, newUser);
         } catch (error) {
-          done(error);
+          done(error, false, { message: 'Could not create user' });
         }
       }
     )
@@ -48,11 +50,11 @@ export function configurePassport() {
           const user = await userModel.findOne({ email: username });
           if (!user) {
             console.log('Usuario no existe en el login');
-            return done(null, false);
+            return done(null, false, { message: 'User or password incorrect' });
           }
           if (!isValidPassword(password, user.password)) {
             console.log('contraseña incorrecta');
-            return done(null, false);
+            return done(null, false, { message: 'User or password incorrect' });
           }
           return done(null, user);
         } catch (error) {
@@ -93,9 +95,33 @@ export function configurePassport() {
     )
   );
 
+  passport.use(
+    'jwt',
+    new JWTStrategy(
+      {
+        jwtFromRequest: jwt.ExtractJwt.fromExtractors([
+          cookieExtractor,
+          jwt.ExtractJwt.fromAuthHeaderAsBearerToken(),
+        ]),
+        secretOrKey: 'CODER_SUPER_SECRETO',
+      },
+      (payload, done) => {
+        try {
+          done(null, payload);
+        } catch (err) {
+          done(err, false);
+        }
+      }
+    )
+  );
+
   passport.serializeUser((user, done) => done(null, user._id));
   passport.deserializeUser(async (id, done) => {
     const user = await userModel.findOne({ _id: id });
     done(null, user);
   });
+}
+
+function cookieExtractor(req) {
+  return req?.cookies?.['AUTH'];
 }
