@@ -18,8 +18,10 @@ const { port, mongo_url } = config;
 const app = express();
 configureHandlebars(app);
 
-app.use(cookieParser(config.cookie_secret));
-app.use(
+configurePassport();
+
+// middlewares
+app.use([
   session({
     store: MongoStore.create({
       mongoUrl: mongo_url,
@@ -32,15 +34,14 @@ app.use(
     secret: config.cookie_secret,
     resave: false,
     saveUninitialized: true,
-  })
-);
-configurePassport();
-app.use(passport.initialize());
-app.use(passport.session());
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static(__dirname + '/public'));
+  }),
+  cookieParser(config.cookie_secret),
+  passport.initialize(),
+  passport.session(),
+  express.json(),
+  express.urlencoded({ extended: true }),
+  express.static(__dirname + '/public'),
+]);
 
 app.use('/', viewsRoute);
 app.use('/api', routes);
